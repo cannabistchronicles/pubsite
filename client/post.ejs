@@ -1,0 +1,49 @@
+<html>
+    <%- include('modules/dependancies.html') %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/components/label.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/components/card.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/components/grid.min.css">
+    <link rel="stylesheet" href="style/post.css">
+    <body>
+
+
+        <% console.log(recent_blog) %>
+        <%- include('modules/header.html') %>
+        <div class="ui container">
+                <div class="ui fluid card">
+                    <div class="image"><img src="images/<%- blog.main_img %>"></div>
+                    <a class="header"><%- blog.author %></a>
+                    <div class="meta"><span class="date">
+                        <%- blog.post_date %></span></div>
+                    <div class="description">
+                        <h1><%- blog.title %></h1>
+                        <%- blog.body %>
+                        <% for(i=0;i<blog.tags.length;i++) { %>
+                                <div class="ui label"><%- blog.tags[i] %></div>
+                        <% } %>
+                    </div>
+                    
+                <div class="ui three column grid">
+                        <% for(i=0;i<recent_blog.length;i++) { %>
+                            <div class="column">
+                                <div class="ui fluid card">
+                                    <div class="image"><img src="images/<%- (recent_blog[i].main_img != null ? recent_blog[i].main_img : "default.png") %>"></div>
+                                    <div class="meta"><span class="date">
+                                        <%- recent_blog[i].post_date %>
+                                    </span></div>
+                                    <div class="content">
+                                        <h1><%- recent_blog[i].title %></h1>
+                                        <%- recent_blog[i].preview %>
+                                        <% for(e=0;e<recent_blog[i].tags.length;e++) { %>
+                                                <div class="ui label"><%- recent_blog[i].tags[e] %></div>
+                                        <% } %>
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
+                    </div>
+                    <br><br>
+                </div>
+    </div>
+    <br><br>
+    </body>

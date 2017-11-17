@@ -1,0 +1,85 @@
+<html>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+    <%- include('modules/dependancies.html') %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/components/form.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/components/input.min.css">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/publish.css">
+    
+    <body>
+        <%- include('modules/header.html') %>
+        <div class="ui container">
+            <h1>Write Post</h1>
+            <form id="post" method="post" class="ui form">
+              <fieldset>
+                  <legend>Post</legend>
+                <div class="field">
+                    <label>Title</label>
+                    <input type="text" id="title" placeholder="Blog Title">
+                </div>
+                <div class="field">
+                    <label>Image</label>
+                    <input type="file" id="mainImage">
+                </div>
+                <div class="field">
+                    <label>Preview</label>
+                    <input type="text" id="preview" placeholder="Preview Text">
+                </div>
+                <div class="field">
+                    <label>Body</label>
+                    <div id="editor"></div>
+                </div>
+                <div class="field">
+                    <label>Category</label>
+                    <select id="category" class="ui compact selection dropdown">
+                        <option value="Strain Review">Strain Review</option>
+                        <option selected value="Post">Blog Post</option>
+                        <option value="">Other</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label>Tags</label>
+                    <input type="text" id="tags" placeholder="Tags">
+                </div>
+                <button class="ui button" type="submit">Submit</button>
+              </fieldset>
+            </form>
+        </div>
+    </body>
+    
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#editor').summernote();
+            $('#post').submit(function (e) {
+                e.preventDefault();
+                publish();
+
+            });
+        });
+    
+        function publish() {
+                var formData = new FormData();
+                formData.append('preview', $('#preview').val());
+                formData.append('title', $('#title').val());
+                formData.append('body', $('#editor').summernote('code'));
+                formData.append('category', $('#category').val());
+                formData.append('tags', $('#tags').val());
+                formData.append('mainImg', document.getElementById("mainImage").files[0]);
+            $.ajax({
+                type: "POST",
+                url: "/publish",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    window.location = "post?id=" + response;
+                }
+            });
+        }
+    </script>
+    
+    </html>

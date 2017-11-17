@@ -1,0 +1,161 @@
+<html>
+        <%- include('modules/dependancies.html') %>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/components/card.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/components/accordion.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/components/grid.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/components/input.min.css">
+        <link rel="stylesheet" href="style/home.css">
+        <body>
+            <%- include('modules/header.html') %>
+            <section id="introduction" v-on:scroll="exploreContent">
+                <div>
+                    <div>
+                        <h1>The Stoner Couple</h1>
+                        <p>Blog posts and strain reviews</p>
+                    </div>
+                </div>
+                <a @click="exploreContent" >
+                    <h2>Explore</h2>
+                    <i class="icon chevron down"></i><i class="icon chevron down"></i><i class="icon chevron down"></i><i class="icon chevron down"></i><i class="icon chevron down"></i>
+                </a>
+            </section>
+            <div class="container">
+                <section id="blogPreviews" class="ui grid stackable">
+                    <div class="column ten wide">
+                        <div class="ui grid stackable">
+                            <div class="row">
+                                <div class="column">
+                                    <div>
+                                        <div class="ui fluid black card">
+                                            <a class="image" href="post?id=<%- blogs[0].id %>">
+                                            <img src="images/<%- blogs[0].main_img %>">
+                                            </a>
+                                            <div class="content">
+                                                <a href="post?id=<%- blogs[0].id %>" class="header"><%- blogs[0].title %></a>
+                                                <div class="meta">
+                                                    <a><%- blogs[0].category %></a>
+                                                </div>
+                                                <div class="description">
+                                                    <%- blogs[0].preview %>
+                                                </div>
+                                            </div>
+                                            <div class="extra content">
+                                                <span class="right floated">
+                                                <%- new Date(parseInt(blogs[0].post_date)).toLocaleDateString() %>
+                                                </span>
+                                                <span>
+                                                <i class="user icon"></i>
+                                                <%- blogs[0].post_date %>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row two column">
+                                <% for (i=1;i<blogs.length;i++) {%>
+                                <% if ((i-1) % 2 == 0 && i > 2) { %>
+                            </div>
+                            <div class="row two column">
+                                <% } %>
+                                <div class="column">
+                                    <div class="ui fluid card">
+                                        <a class="image" href="post?id=<%- blogs[i].id %>">
+                                        <img src="images/<%- blogs[i].main_img %>">
+                                        </a>
+                                        <div class="content">
+                                            <a href="post?id=<%- blogs[i].id %>" class="header"><%- blogs[i].title %></a>
+                                            <div class="meta">
+                                                <a><%- blogs[i].category %></a>
+                                            </div>
+                                            <div class="description">
+                                                <%- blogs[i].preview %>
+                                            </div>
+                                        </div>
+                                        <div class="extra content">
+                                            <span class="right floated">
+                                            <%- new Date(parseInt(blogs[i].post_date)).toLocaleDateString() %>
+                                            </span>
+                                            <span>
+                                            <i class="user icon"></i>
+                                            <%- //blogs[i].post_date %>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="quickLinks" class="column six wide">
+                        <div>
+                            <div>
+                                <h4>Search</h4>
+                                <div class="ui icon fluid input">
+                                    <i class="search icon"></i>
+                                    <input type="text" placeholder="Search...">
+                                </div>
+                            </div>
+                            <div>
+                                <h4>Recent Posts</h4>
+                                <ul>
+                                    <% for (i=0;i<recent_post.length;i++) { %>
+                                        <li><a href="post?id=<%- recent_post[i].id %>"><%- recent_post[i].title %></a></li>
+                                    <% } %>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4>Subscribe</h4>
+                                <div class="ui fluid input">
+                                    <input type="email" placeholder="Your email address">
+                                </div>
+                            </div>
+                            <div>
+                                <h4>Find Strain</h4>
+                                <a href="">Indica <i class="icon chevron right"></i></a>
+                                <a href="">Sativa <i class="icon chevron right"></i></a>
+                                <a href="">All <i class="icon chevron right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            </div>
+            <%- include('modules/footer.html') %>
+        </body>
+        <script src="https://unpkg.com/vue"></script>
+        <script>
+            new Vue({
+                el:'#introduction',
+                methods: {
+                    exploreContent: function(e) {
+                        moving = true;
+                        recurse();
+                    }.bind(moving)
+                }
+            });
+            var moving = false;
+            
+            var recurse = function() {
+                var newScrollY = Math.max(document.body.scrollTop,document.documentElement.scrollTop);
+                if (newScrollY < window.innerHeight - 150 && moving) {
+                    window.scrollBy(0, 20);
+                    setTimeout(recurse, 10);
+                } else {
+                    window.scrollTo(0, window.innerHeight - document.getElementById("header").offsetHeight);
+                    scrollY = 99999;
+                    moving = false;
+                }
+            }.bind(moving, scrollY);
+            var scrollY = Math.max(document.body.scrollTop,document.documentElement.scrollTop);
+            window.document.body.onscroll = function() {
+                var newScrollY =Math.max(document.body.scrollTop,document.documentElement.scrollTop); 
+                if (scrollY < newScrollY && newScrollY < window.innerHeight - 150 && !moving) {
+                    moving = true;
+                    recurse();
+                } else if (scrollY > newScrollY && !moving) {
+                    scrollY = newScrollY;
+                }
+            }.bind(moving, scrollY);
+        </script>
+    </html>
