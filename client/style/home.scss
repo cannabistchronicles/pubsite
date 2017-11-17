@@ -1,0 +1,181 @@
+$color-primary-0:#569E68;
+$color-primary-1:#DB3A34;
+
+
+@keyframes bounceInUp {
+    from, 60%, 75%, 90%, to {
+      animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+  
+    from {
+      opacity: 0;
+      transform: translate3d(0, 3000px, 0);
+    }
+  
+    60% {
+      opacity: 1;
+      transform: translate3d(0, -20px, 0);
+    }
+  
+    75% {
+      transform: translate3d(0, 10px, 0);
+    }
+  
+    90% {
+      transform: translate3d(0, -5px, 0);
+    }
+  
+    to {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  
+  .bounceInUp {
+    animation-name: bounceInUp;
+  }
+section#introduction {
+    position: absolute;
+    padding:0;
+    top:0;
+    left:0;
+    width: 100%;
+    height:100%;
+    z-index:1;
+    display:table;
+    text-align:center;
+    &::after {
+        position:absolute;
+        display:block;
+        top:0;
+        left:0;
+        content:'';
+        background-image:url('../images/home-background.jpg');
+        background-size:cover;
+        background-repeat: no-repeat;
+        width:100%;
+        height:100%;
+        z-index:-1;
+    }
+    > div:first-child {
+        height:calc(100vh - 7.3em);
+        width:calc(100% - 4em);
+        z-index:1;
+        color:white;
+        background-color:rgba(0,0,0,0.8);
+        padding:2em;
+        padding-top:0;
+        display:table;
+        > div {
+            display:table-cell;
+            vertical-align: middle;
+            h1 {
+                border:1px solid;
+                border-radius:3px;
+                padding:1em;
+                display:inline-block;
+            }
+            p {
+                font-size:1.5em;
+            }
+
+        }
+    }
+    > a {
+        position:Relative;
+        display:block;
+        text-align:center;
+        font-size:1em;
+        width:100%;
+        color:white;
+        padding-top:0.2rem;
+        z-index: 2;
+        cursor: pointer;
+        transition:margin-top 0.5s, padding 0.5s;
+        i {
+            position:Relative;
+            font-size:2em;
+            width:10%;
+            margin:0;
+            margin-top:0.5rem;
+        }
+        &:before {
+            position:absolute;
+            top:0;
+            left:0;
+            content:'';
+            width:100%;
+            z-index: -1;
+            height:100%;
+            background-color:rgba(0,0,0,0.95);
+        }
+        
+        &:hover {
+            margin-top:-5px;
+            padding-bottom:5px;
+        }
+        h2 {
+            margin-top:0.5em;
+            margin-bottom:0.1em;
+        }
+    }
+}
+section#blogPreviews {
+    width:100%;
+    padding:0;
+    padding-bottom:3em;
+    box-sizing: border-box;
+    margin:0;
+    background-color:$color-primary-0;
+     div {
+         box-sizing: border-box;
+    }
+}
+#quickLinks {
+    > div {
+        padding-top:1rem;
+        padding-bottom:1rem;
+        background-color:white;
+        > div {
+            width:calc(100% - 2rem);
+            position: relative;
+            display: block;
+            margin-left:1rem;
+            margin-right:1rem;
+            padding-bottom:1rem;
+            padding-top:1rem;
+            border:1px solid lightgrey;
+            border-width: 1 0 0 0;
+            > h4 {
+                margin:0.5rem;
+                text-align: center;
+            }
+            > a {
+                display:block;
+                width:calc(100% - 2em;
+                padding:1em;
+                text-decoration: none;
+                color:black;
+                border:1px solid black;
+                border-width: 0 0 1 0;
+                i {
+                    float:right;
+                }
+                &:hover {
+                    background-color:#EBEBEB;
+                }
+            }
+        }
+        
+    }
+}
+
+.container {
+    max-width:1200px;
+    width:calc(100vw  - 4em);
+    margin:0 auto;
+    padding-left:2em;
+    padding-right:2em;
+    background:none;
+    margin-top:100vh;
+    box-sizing: border-box;
+}

@@ -1,0 +1,28 @@
+.ui.three.column.grid {
+  left: 0;
+  padding: 0.5rem;
+  margin-top: 2rem;
+  border: 1px solid lightgrey;
+  border-width: 1 0 1 0;
+}
+
+.ui.three.column.grid > .column {
+  width: calc(33% - 2rem);
+  padding: 1rem;
+}
+
+.card .description {
+  padding: 1em;
+}
+
+.card > h1 {
+  text-align: center;
+}
+
+.container {
+  min-height: 0;
+  overflow: hidden;
+}
+ 
+
+ /*# sourceMappingURL= post.css.map */

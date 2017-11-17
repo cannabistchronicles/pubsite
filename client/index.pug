@@ -1,0 +1,132 @@
+html
+  meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css')
+  link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/components/container.min.css')
+  link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/components/card.min.css')
+  link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/pure-min.css')
+  link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/grids-responsive-min.css')
+  link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/components/accordion.min.css')
+  link(rel='stylesheet', href='style/style.css')
+  link(rel='stylesheet', href='style/home.css')
+  body
+    #head
+      page-header
+    .ui.container
+      section#introduction
+        div
+          div
+            h1 The Stoner Couple
+            p Blog posts and strain reviews
+        a(@click='exploreContent')
+          h2 Explore
+          i.icon.chevron.down
+          i.icon.chevron.down
+          i.icon.chevron.down
+          i.icon.chevron.down
+          i.icon.chevron.down
+      section#blogPreviews.pure-g.ui.link.stackable.cards
+        h1.pure-u-1 Recent Posts
+        .pure-u-1.pure-u-sm-1.pure-u-md-2-3.pure-u-lg-2-3
+          div
+            .ui.fluid.card
+              .image
+                img(src='https://www.leafscience.com/wp-content/uploads/2016/04/popular-weed-strains-10.jpg')
+              .content
+                .header White Death
+                .meta
+                  a Strain Review
+                .description
+                  | Short description of the review
+              .extra.content
+                span.right.floated
+                  | Posted September 7th
+                span
+                  i.user.icon
+                  |                            75 Friends
+        .pure-u-1-1.pure-u-sm-1-2.pure-u-md-1-3.pure-u-lg-1-3
+          div
+            .ui.fluid.card
+              .image
+                img(src='http://bpc.h-cdn.co/assets/17/17/980x490/landscape-1493155493-colorado-dispensaries.jpg')
+              .content
+                .header Best Dispensaries
+                .meta
+                  a Post
+                .description
+                  | Description of the blog post
+              .extra.content
+                span.right.floated
+                  | Posted September 7th
+                span
+                  i.user.icon
+                  |                            75 Friends
+        .pure-u-1-1.pure-u-sm-1-2.pure-u-md-1-3.pure-u-lg-1-3
+          div
+            .ui.fluid.card
+              .image
+                img(src='https://www.leafscience.com/wp-content/uploads/2016/04/popular-weed-strains-10.jpg')
+              .content
+                .header Great White Shark
+                .meta
+                  a Strain Review
+                .description
+                  | Matthew is an interior designer living in New York.
+              .extra.content
+                span.right.floated
+                  | Posted October 23rd
+                span
+                  i.user.icon
+                  |                            75 Friends
+        .pure-u-1-1.pure-u-sm-1-2.pure-u-md-1-3.pure-u-lg-1-3
+          div
+            .ui.fluid.card
+              .image
+                img(src='https://www.leafscience.com/wp-content/uploads/2016/04/popular-weed-strains-10.jpg')
+              .content
+                .header Matt Giampietro
+                .meta
+                  a Friends
+                .description
+                  | Matthew is an interior designer living in New York.
+              .extra.content
+                span.right.floated
+                  | Posted October 23rd
+                span
+                  i.user.icon
+                  |                            75 Friends
+        .pure-u-1-2.pure-u-sm-1-2.pure-u-md-1-3.pure-u-lg-1-3
+          div
+            .ui.fluid.card
+              .image
+                img(src='https://www.leafscience.com/wp-content/uploads/2016/04/popular-weed-strains-10.jpg')
+              .content
+                .header Matt Giampietro
+                .meta
+                  a Friends
+                .description
+                  | Matthew is an interior designer living in New York.
+              .extra.content
+                span.right.floated
+                  | Posted October 23rd
+                span
+                  i.user.icon
+                  |                            75 Friends
+  script(src='https://unpkg.com/vue')
+  script(src='js/header.js')
+  script.
+    new Vue({
+    el:'#introduction',
+    methods: {
+    exploreContent: function(e) {
+    var recurse = function() {
+    if (window.scrollY < window.innerHeight - 150) {
+    window.scrollBy(0, 20);
+    setTimeout(recurse, 10);
+    } else {
+    window.scrollTo(0, window.innerHeight - 90);
+    }
+    }
+    recurse();
+    }
+    }
+    })
