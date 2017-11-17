@@ -16,8 +16,8 @@ function init() {
      var db = mongoose.connection;
     db.on('error', console.error.bind(console, 'connection error:'));
      db.once('open', function() {
-         
+
     });
 }
 app.use('/', express.static('/client'));
-app.listen(3000);
+app.listen(80);
